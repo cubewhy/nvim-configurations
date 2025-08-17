@@ -33,3 +33,5 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+vim.keymap.set("n", "<leader>L", "<CMD>Lazy<CR>", { desc = "Open Lazy.nvim UI" })
