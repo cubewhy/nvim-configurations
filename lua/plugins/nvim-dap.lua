@@ -3,6 +3,10 @@ vim.keymap.set("n", "<leader>db", function()
 end, { desc = "Toggle breakpoint" })
 
 vim.keymap.set("n", "<leader>dr", "<CMD>DapNew<CR>", { desc = "Start debugging" })
+vim.keymap.set("n", "<F5>", "<CMD>DapContinue<CR>", { desc = "Continue" })
+vim.keymap.set("n", "<F5>", "<CMD>DapStepOver<CR>", { desc = "Step Over" })
+vim.keymap.set("n", "<F11>", "<CMD>DapStepInto<CR>", { desc = "Step Into" })
+vim.keymap.set("n", "<S-F11>", "<CMD>DapStepOut<CR>", { desc = "Step Out" })
 
 return {
 	{
