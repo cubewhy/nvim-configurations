@@ -35,3 +35,10 @@ require("lazy").setup({
 })
 
 vim.keymap.set("n", "<leader>L", "<CMD>Lazy<CR>", { desc = "Open Lazy.nvim UI" })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    require("config.options")
+  end,
+})

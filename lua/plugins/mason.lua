@@ -1,5 +1,6 @@
 vim.keymap.set("n", "<leader>lm", "<CMD>Mason<CR>", { desc = "Open Mason UI" })
 
+
 return {
 	{
 		"mason-org/mason.nvim",
@@ -37,6 +38,6 @@ return {
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
 			"neovim/nvim-lspconfig",
-		},
+		}
 	},
 }
