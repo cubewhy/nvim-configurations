@@ -10,6 +10,12 @@ return {
 					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 				})
 			end,
+			on_attach = function(client, bufnr)
+				local navic = require("nvim-navic")
+				if client.server_capabilities.documentSymbolProvider then
+					navic.attach(client, bufnr)
+				end
+			end,
 			config = function()
 				local lsp = require("lspconfig")
 				local capabilities = require("cmp_nvim_lsp").default_capabilities()
