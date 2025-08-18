@@ -4,4 +4,5 @@ end, { expr = true, desc = "Rename symbol under cursor" })
 
 return {
   "smjonas/inc-rename.nvim",
+  opts = {}
 }
