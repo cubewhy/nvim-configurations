@@ -1,3 +1,4 @@
+vim.opt.guifont = "JetBrains Mono,DejaVu Sans Mono,Iosevka:h12"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -12,4 +13,3 @@ vim.wo.relativenumber = true
 require("config.lazy")
 
 vim.cmd([[colorscheme ayu]])
-
