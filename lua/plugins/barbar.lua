@@ -30,6 +30,7 @@ map("n", "<leader>bp", "<Cmd>BufferPin<CR>", { noremap = true, silent = true, de
 
 -- Close buffer
 map("n", "<A-c>", "<Cmd>BufferClose<CR>", { noremap = true, silent = true, desc = "Close current buffer" })
+map("n", "<leader>bo", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", { noremap = true, silent = true, desc = "Close unpinned buffers" })
 
 -- Wipeout buffer
 --                 :BufferWipeout
