@@ -9,8 +9,8 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 
 vim.keymap.set("n", "<leader>sS", builtin.lsp_dynamic_workspace_symbols, { desc = "Telescope LSP workspace symbols" })
 vim.keymap.set("n", "<leader>ss", builtin.lsp_document_symbols, { desc = "Telescope LSP document symbols" })
-vim.keymap.set("n", "gr", builtin.lsp_definitions, { desc = "Telescope LSP definitions" })
-vim.keymap.set("n", "gd", builtin.lsp_references, { desc = "Telescope LSP references" })
+vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Telescope LSP definitions" })
+vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Telescope LSP references" })
 
 return {
 	{
