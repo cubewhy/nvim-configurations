@@ -46,6 +46,10 @@ return {
 			server = {
 				settings = {
 					["rust-analyzer"] = {
+						foldingRange = {
+							dynamicRegistration = false,
+							lineFoldingOnly = true,
+						},
 						inlayHints = {
 							bindingModeHints = {
 								enable = false,

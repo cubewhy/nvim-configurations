@@ -7,17 +7,17 @@ local function hasProperty(object, prop)
 	return object[prop] ~= nil
 end
 
--- auto setup installed lsp
--- for _, server in pairs(mason_lspconfig.get_installed_servers()) do
--- 	-- if hasProperty(lspconfig, server) then
--- 	--     lspconfig[string.gsub(server, "-", "_")].setup({})
--- 	-- end
---
--- 	if server == "kotlin_lsp" then
--- 		-- skip register this server (this cannot be registered via lspconfig)
--- 		goto continue
--- 	end
---
--- 	lspconfig[server].setup({})
--- 	::continue::
--- end
+-- enable folding for lsp servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
+local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+	require("lspconfig")[ls].setup({
+		capabilities = capabilities,
+		-- you can add other fields for setting up lsp server in this table
+	})
+end
+require("ufo").setup()
