@@ -6,6 +6,30 @@ return {
 		vim.opt.splitkeep = "screen"
 	end,
 	opts = {
+		options = {
+			left = { size = 40 },
+			bottom = { size = 10 },
+			right = { size = 30 },
+			top = { size = 10 },
+		},
+		animate = {
+			enabled = false,
+			fps = 100, -- frames per second
+			cps = 120, -- cells per second
+			on_begin = function()
+				vim.g.minianimate_disable = true
+			end,
+			on_end = function()
+				vim.g.minianimate_disable = false
+			end,
+			-- Spinner for pinned views that are loading.
+			-- if you have noice.nvim installed, you can use any spinner from it, like:
+			-- spinner = require("noice.util.spinners").spinners.circleFull,
+			spinner = {
+				frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+				interval = 80,
+			},
+		},
 		bottom = {
 			-- toggleterm / lazyterm at the bottom with a height of 40% of the screen
 			{
@@ -13,7 +37,8 @@ return {
 				size = { height = 0.4 },
 				-- exclude floating windows
 				filter = function(buf, win)
-					return vim.api.nvim_win_get_config(win).relative == ""
+					local props = vim.api.nvim_win_get_config(win)
+					return props.relative == "" and props.split == "below"
 				end,
 			},
 			{
@@ -24,7 +49,14 @@ return {
 					return not vim.b[buf].lazyterm_cmd
 				end,
 			},
-			"trouble",
+			{
+				ft = "trouble",
+				title = "Trouble",
+				filter = function(buf, win)
+					local props = vim.api.nvim_win_get_config(win)
+					return props.split == "below"
+				end,
+			},
 			{ ft = "qf", title = "QuickFix" },
 			{
 				ft = "help",
@@ -77,6 +109,25 @@ return {
 			},
 			-- any other neo-tree windows
 			"neo-tree",
+		},
+		right = {
+			{
+				ft = "toggleterm",
+				size = { height = 0.4 },
+				-- exclude floating windows
+				filter = function(buf, win)
+					local props = vim.api.nvim_win_get_config(win)
+					return props.relative == "" and props.split == "right"
+				end,
+			},
+			{
+				ft = "trouble",
+				title = "Trouble",
+				filter = function(buf, win)
+					local props = vim.api.nvim_win_get_config(win)
+					return props.split == "right"
+				end,
+			},
 		},
 	},
 }
