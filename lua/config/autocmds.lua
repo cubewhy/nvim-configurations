@@ -102,20 +102,52 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.api.nvim_create_autocmd("User", {
-  pattern = "PersistenceLoadPre",
-  group = augroup("session-persistence"),
-  callback = function()
-	-- close all opened buffers
-    vim.cmd([[BufferCloseAllButCurrent]])
-    vim.cmd([[Neotree filesystem show]])
-  end,
+	pattern = "PersistenceLoadPre",
+	group = augroup("session-persistence"),
+	callback = function()
+		-- close all opened buffers
+		vim.cmd([[BufferCloseAllButCurrent]])
+		vim.cmd([[Neotree filesystem show]])
+	end,
 })
-
 
 vim.api.nvim_create_autocmd("User", {
-  pattern = "PersistenceSavePre",
-  group = augroup("session-persistence"),
-  callback = function()
-    vim.cmd([[Neotree close]])
-  end,
+	pattern = "PersistenceSavePre",
+	group = augroup("session-persistence"),
+	callback = function()
+		vim.cmd([[Neotree close]])
+	end,
 })
+
+-- auto toggle ime
+local function set_ime(args)
+	if args.event:match("Enter$") then
+		vim.g.neovide_input_ime = true
+	else
+		vim.g.neovide_input_ime = false
+	end
+end
+
+local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
+
+vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+	group = ime_input,
+	pattern = "*",
+	callback = set_ime,
+})
+
+vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
+	group = ime_input,
+	pattern = "[/\\?]",
+	callback = set_ime,
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = augroup("colorscheme"),
+	callback = function()
+		if vim.g.colors_name == "ayu" then
+			vim.cmd("highlight LineNr guifg=#707070")
+		end
+	end,
+})
+

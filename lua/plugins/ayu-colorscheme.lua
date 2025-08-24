@@ -1,4 +1,4 @@
 return {
 	"Shatur/neovim-ayu",
-	lazy = true
+	-- lazy = true,
 }

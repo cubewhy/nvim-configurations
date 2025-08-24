@@ -1,0 +1,2 @@
+-- init colorscheme
+-- Make sure init this after autocmd
