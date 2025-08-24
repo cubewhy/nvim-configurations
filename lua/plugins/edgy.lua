@@ -50,6 +50,14 @@ return {
 				end,
 			},
 			{
+				ft = "",
+				title = "Terminal",
+				filter = function (buf, win)
+					local props = vim.api.nvim_win_get_config(win)
+					return props.split == "below" and vim.bo[buf].buftype == "terminal"
+				end
+			},
+			{
 				ft = "trouble",
 				title = "Trouble",
 				filter = function(buf, win)
