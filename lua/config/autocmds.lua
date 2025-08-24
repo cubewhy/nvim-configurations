@@ -147,6 +147,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = function()
 		if vim.g.colors_name == "ayu" then
 			vim.cmd("highlight LineNr guifg=#707070")
+			-- vim.cmd("highlight WinSeparator guifg=#464646 guibg=NONE")
 		end
 	end,
 })

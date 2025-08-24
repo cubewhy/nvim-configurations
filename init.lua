@@ -14,10 +14,10 @@ vim.o.smartindent = true
 vim.o.shiftwidth = 4
 vim.opt.cursorline = true
 
-vim.g.neovide_opacity = 0.75
-vim.g.neovide_normal_opacity = 0.75
-
-vim.g.neovide_window_blurred = true
+-- vim.g.neovide_opacity = 0.75
+-- vim.g.neovide_normal_opacity = 0.75
+--
+-- vim.g.neovide_window_blurred = true
 
 require("config.lazy")
 
