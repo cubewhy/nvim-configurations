@@ -11,8 +11,8 @@ vim.o.smartindent = true
 vim.o.shiftwidth = 4
 vim.wo.relativenumber = true
 
-vim.g.neovide_opacity = 0.8
-vim.g.neovide_normal_opacity = 0.8
+vim.g.neovide_opacity = 0.75
+vim.g.neovide_normal_opacity = 0.75
 
 vim.g.neovide_window_blurred = true
 
