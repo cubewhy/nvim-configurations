@@ -1,5 +1,5 @@
 return {
-	"folke/edgy.nvim",
+	"cubewhy/edgy.nvim",
 	event = "VeryLazy",
 	init = function()
 		vim.opt.laststatus = 3
@@ -30,6 +30,86 @@ return {
 				interval = 80,
 			},
 		},
+		-- buffer-local keymaps to be added to edgebar buffers.
+		-- Existing buffer-local keymaps will never be overridden.
+		-- Set to false to disable a builtin.
+		---@type table<string, fun(win:Edgy.Window)|false>
+		keys = {
+			-- close window
+			["q"] = function(win)
+				win:close()
+			end,
+			-- hide window
+			["<c-q>"] = function(win)
+				win:hide()
+			end,
+			-- close sidebar
+			["Q"] = function(win)
+				win.view.edgebar:close()
+			end,
+			-- next open window
+			["]w"] = function(win)
+				win:next({ visible = true, focus = true })
+			end,
+			-- previous open window
+			["[w"] = function(win)
+				win:prev({ visible = true, focus = true })
+			end,
+			-- next loaded window
+			["]W"] = function(win)
+				win:next({ pinned = false, focus = true })
+			end,
+			-- prev loaded window
+			["[W"] = function(win)
+				win:prev({ pinned = false, focus = true })
+			end,
+			-- increase width
+			["<C-Right>"] = function(win)
+				local props = vim.api.nvim_win_get_config(win:native_window())
+				if props.split == "left" or props.split == "above" then
+					-- increase width
+					win:resize("width", 2)
+				elseif props.split == "right" then
+					-- decrease width
+					win:resize("width", -2)
+				end
+			end,
+			-- decrease width
+			["<C-Left>"] = function(win)
+				local props = vim.api.nvim_win_get_config(win:native_window())
+				if props.split == "left" or props.split == "above" then
+					-- decrease width
+					win:resize("width", -2)
+				elseif props.split == "right" then
+					-- increase width
+					win:resize("width", 2)
+				end
+			end,
+			["<C-Up>"] = function(win)
+				local props = vim.api.nvim_win_get_config(win:native_window())
+				if props.split == "below" then
+					-- increase height
+					win:resize("height", 2)
+				elseif props.split == "above" then
+					-- decrease height
+					win:resize("height", -2)
+				end
+			end,
+			["<C-Down>"] = function(win)
+				local props = vim.api.nvim_win_get_config(win:native_window())
+				if props.split == "below" then
+					-- decrease height
+					win:resize("height", -2)
+				elseif props.split == "above" then
+					-- increase height
+					win:resize("height", 2)
+				end
+			end,
+			-- reset all custom sizing
+			["<c-w>="] = function(win)
+				win.view.edgebar:equalize()
+			end,
+		},
 		bottom = {
 			-- toggleterm / lazyterm at the bottom with a height of 40% of the screen
 			{
@@ -52,10 +132,10 @@ return {
 			{
 				ft = "",
 				title = "Terminal",
-				filter = function (buf, win)
+				filter = function(buf, win)
 					local props = vim.api.nvim_win_get_config(win)
 					return props.split == "below" and vim.bo[buf].buftype == "terminal"
-				end
+				end,
 			},
 			{
 				ft = "trouble",
