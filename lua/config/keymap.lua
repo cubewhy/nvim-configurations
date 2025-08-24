@@ -43,3 +43,10 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 -- map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix", silent = true })
 -- map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix", silent = true })
+
+for i = string.byte("a"), string.byte("z") do
+  local m = string.char(i)
+  vim.keymap.set("n", "dm'" .. m, function()
+    vim.cmd("delmarks " .. m)
+  end, { silent = true, desc = "Delete mark with name " .. m })
+end
