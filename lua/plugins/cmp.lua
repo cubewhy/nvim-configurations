@@ -34,7 +34,7 @@ return {
 				-- "hrsh7th/vim-vsnip",
 
 				"L3MON4D3/LuaSnip",
-				-- "saadparwaiz1/cmp_luasnip",
+				"saadparwaiz1/cmp_luasnip",
 				-- "dcampos/nvim-snippy",
 				-- "dcampos/cmp-snippy",
 				-- "SirVer/ultisnips",
@@ -74,22 +74,18 @@ return {
 						["<C-e>"] = cmp.mapping.abort(),
 						["<CR>"] = cmp.mapping(function(fallback)
 							if cmp.visible() then
-								if luasnip.expandable() then
-									luasnip.expand()
-								else
-									cmp.confirm({
-										select = true,
-									})
-								end
+								cmp.confirm({
+									select = true,
+								})
 							else
 								fallback()
 							end
 						end),
 
 						["<Tab>"] = cmp.mapping(function(fallback)
-							if cmp.visible() then
-								cmp.select_next_item()
-							elseif luasnip.locally_jumpable(1) then
+							-- if cmp.visible() then
+							-- 	cmp.select_next_item()
+							if luasnip.locally_jumpable(1) then
 								luasnip.jump(1)
 							else
 								fallback()
@@ -97,9 +93,9 @@ return {
 						end, { "i", "s" }),
 
 						["<S-Tab>"] = cmp.mapping(function(fallback)
-							if cmp.visible() then
-								cmp.select_prev_item()
-							elseif luasnip.locally_jumpable(-1) then
+							-- if cmp.visible() then
+							-- 	cmp.select_prev_item()
+							if luasnip.locally_jumpable(-1) then
 								luasnip.jump(-1)
 							else
 								fallback()
@@ -107,11 +103,11 @@ return {
 						end, { "i", "s" }),
 					}),
 					sources = cmp.config.sources({
-						{ name = "nvim_lsp", group_index = 1 },
+						{ name = "nvim_lsp" },
 						-- { name = "vsnip" },
-						{ name = "crates",   group_index = 1 },
-						{ name = "path",     group_index = 2 },
-						{ name = "luasnip",  group_index = 3 },
+						{ name = "crates" },
+						{ name = "path" },
+						{ name = "luasnip" },
 						-- { name = "ultisnips" },
 						-- { name = "snippy" },
 					}, {
