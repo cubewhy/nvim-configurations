@@ -107,15 +107,15 @@ return {
 						end, { "i", "s" }),
 					}),
 					sources = cmp.config.sources({
-						{ name = "nvim_lsp" },
+						{ name = "nvim_lsp", group_index = 1 },
 						-- { name = "vsnip" },
-						{ name = "luasnip" },
+						{ name = "crates",   group_index = 1 },
+						{ name = "path",     group_index = 2 },
+						{ name = "luasnip",  group_index = 3 },
 						-- { name = "ultisnips" },
 						-- { name = "snippy" },
 					}, {
-						{ name = "path" },
-						-- { name = "buffer" },
-						{ name = "crates" },
+						{ name = "buffer" },
 					}),
 				})
 
