@@ -105,12 +105,12 @@ return {
 					sources = cmp.config.sources({
 						{ name = "nvim_lsp" },
 						-- { name = "vsnip" },
-						{ name = "crates" },
 						{ name = "path" },
 						{ name = "luasnip" },
 						-- { name = "ultisnips" },
 						-- { name = "snippy" },
 					}, {
+						{ name = "crates" },
 						{ name = "buffer" },
 					}),
 				})
