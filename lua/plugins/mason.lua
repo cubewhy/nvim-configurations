@@ -29,7 +29,7 @@ return {
 					"stylua", -- lua formatter
 				},
 			})
-		end,
+		end
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",

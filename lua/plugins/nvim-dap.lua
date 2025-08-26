@@ -13,7 +13,17 @@ return {
 		"mfussenegger/nvim-dap",
 	},
 	{
-		"jay-babu/mason-nvim-dap.nvim"
+		"jay-babu/mason-nvim-dap.nvim",
+		opts = {
+			handlers = {
+				function(config)
+					-- all sources with no handler get passed here
+
+					-- Keep original functionality
+					require("mason-nvim-dap").default_setup(config)
+				end,
+			},
+		},
 	},
 	{
 		"rcarriga/nvim-dap-ui",
