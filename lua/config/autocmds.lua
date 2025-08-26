@@ -152,3 +152,18 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	end,
 })
 
+local function set_winblend_all()
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		pcall(vim.api.nvim_set_option_value, "winblend", 40, { win = win, scope = "local" })
+	end
+end
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = set_winblend_all,
+})
+
+vim.api.nvim_create_autocmd({ "WinNew", "BufWinEnter" }, {
+	callback = function()
+		pcall(vim.api.nvim_set_option_value, "winblend", 40, { win = 0, scope = "local" })
+	end,
+})
