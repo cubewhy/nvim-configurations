@@ -142,6 +142,12 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
 	callback = set_ime,
 })
 
+vim.api.nvim_create_autocmd({ "TermEnter", "TermLeave" }, {
+	group = ime_input,
+	pattern = "*",
+	callback = set_ime,
+})
+
 vim.api.nvim_create_autocmd("ColorScheme", {
 	group = augroup("colorscheme"),
 	callback = function()
