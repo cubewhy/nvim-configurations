@@ -1,0 +1,10 @@
+  ~/dev/playground/c_playground
+    build
+    CMakeLists.txt
+    build-linux.sh
+    hash_table.c
+    hash_table.h
+    main.c                           W
+    run.py
+    run.sh
+   (5 hidden items)

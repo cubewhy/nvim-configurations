@@ -37,6 +37,7 @@ return {
 		config = function()
 			vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
+
 			-- setup dap config by VsCode launch.json file
 			local vscode = require("dap.ext.vscode")
 			local json = require("plenary.json")
@@ -44,6 +45,8 @@ return {
 				return vim.json.decode(json.json_strip_comments(str))
 			end
 		end,
+		init = function ()
+		end
 	},
 	{
 		"jay-babu/mason-nvim-dap.nvim",

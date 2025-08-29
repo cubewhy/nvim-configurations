@@ -115,6 +115,9 @@ vim.api.nvim_create_autocmd("User", {
 	pattern = "PersistenceSavePre",
 	group = augroup("session-persistence"),
 	callback = function()
+		-- Close dapui
+		require("dapui").close({})
+		-- Close neotree
 		vim.cmd([[Neotree close]])
 	end,
 })
@@ -171,5 +174,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd({ "WinNew", "BufWinEnter" }, {
 	callback = function()
 		pcall(vim.api.nvim_set_option_value, "winblend", 40, { win = 0, scope = "local" })
+
+		vim.cmd("hi DapBreakpointColor guifg=#fa4848")
+		vim.cmd("hi DapBreakpointConditionColor guifg=#00ffff")
+		vim.cmd("hi DapBreakpointRejectedColor guifg=#fa4848")
+		vim.cmd("hi DapStoppedColor guifg=#fa4848")
+		vim.cmd("hi DapLogPointColor guifg=#fa4848")
 	end,
 })
