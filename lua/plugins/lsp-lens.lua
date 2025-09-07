@@ -1,4 +1,4 @@
 return {
-	"VidocqH/lsp-lens.nvim",
+	"cubewhy/lsp-lens.nvim",
 	opts = {}
 }
