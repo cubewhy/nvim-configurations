@@ -109,6 +109,7 @@ return {
 						{ name = "luasnip" },
 						-- { name = "ultisnips" },
 						-- { name = "snippy" },
+						{ name = "git" },
 					}, {
 						{ name = "crates" },
 						{ name = "buffer" },
@@ -197,17 +198,17 @@ return {
 		-- 	},
 		-- 	opts_extend = { "sources.default" },
 		-- },
-		-- {
-		--   "petertriho/cmp-git",
-		--   ft = { "gitcommit" },
-		--   dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" },
-		--   config = function()
-		--     require("cmp_git").setup()
-		--     local cmp = require("cmp")
-		--     cmp.setup.filetype("gitcommit", {
-		--       sources = cmp.config.sources({ { name = "git" } }, { { name = "buffer" } }),
-		--     })
-		--   end,
-		-- },
+		{
+			"petertriho/cmp-git",
+			ft = { "gitcommit" },
+			dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" },
+			config = function()
+				require("cmp_git").setup()
+				local cmp = require("cmp")
+				cmp.setup.filetype("gitcommit", {
+					sources = cmp.config.sources({ { name = "git" } }, { { name = "buffer" } }),
+				})
+			end,
+		},
 	},
 }

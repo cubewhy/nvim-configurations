@@ -72,4 +72,40 @@ return {
 			},
 		},
 	},
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+
+			"nvim-telescope/telescope.nvim",
+		},
+		keys = {
+			{
+				"<leader>gG",
+				function()
+					local neogit = require("neogit")
+					neogit.open()
+				end,
+				desc = "Open Neogit",
+			},
+			{
+				"<leader>gS",
+				function()
+					local neogit = require("neogit")
+					neogit.open({ "stash" })
+				end,
+				desc = "Open git Stash",
+			},
+			{
+				"<leader>gd",
+				function()
+					local neogit = require("neogit")
+					neogit.open({ "diff" })
+				end,
+				desc = "Open git Diff",
+			},
+		},
+		opts = {},
+	},
 }
