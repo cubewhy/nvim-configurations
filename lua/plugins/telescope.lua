@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim", "nvim-telescope/telescope-fzf-native.nvim" },
 		opts = {
 			extensions = {
 				["ui-select"] = {
@@ -93,4 +93,5 @@ return {
 			vim.keymap.set("n", "gy", builtin.lsp_type_definitions, { desc = "Telescope LSP type definitions" })
 		end,
 	},
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 }
